@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
   
 <suite name="MakeMyTrip Test Automation Suite" verbose="1" >
+    <parameter name = "departFlight"  value = "1"/>
+    <parameter name = "returnFlight" value = "2" />
   <test name="MakeMyTrip TestCases" >
-       <parameter name = "departFlight"  value = "3"/>
-       <parameter name = "returnFlight" value = "2" />
     <classes>
    	   <class name="com.mmt.qa.testcases.HomePageTest" />
        <class name="com.mmt.qa.testcases.FlightDetailsListPageTest" />

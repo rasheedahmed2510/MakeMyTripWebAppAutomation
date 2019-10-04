@@ -17,7 +17,7 @@ public class HomePageTest extends BaseTest {
 		homepage = new HomePage();
 	}
 	
-	@Test(priority = 1, enabled= false)
+	@Test(priority = 1)
 	public void SearchForFlights(){
 		System.out.println("******************Start Test********************************");
 		homepage.searchForFlightsRoundTripFor7DaysFromCurrentDate(prop.getProperty("fromCity"), prop.getProperty("toCity"));

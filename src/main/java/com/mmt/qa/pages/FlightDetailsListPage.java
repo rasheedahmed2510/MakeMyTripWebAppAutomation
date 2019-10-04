@@ -39,13 +39,22 @@ public class FlightDetailsListPage extends BaseTest {
 	private WebElement returnFlightPriceList;
 	
 	@FindBy(xpath="//div[@class='splitVw-footer-left']//div[@class='timing-option pull-left']//div[@class='pull-right marL5 text-right']//p[@class='actual-price']")
-	private WebElement departureFlightSelectedFare;
+	private WebElement departureFlightSelectedFareFooter;
 	
 	@FindBy(xpath="//div[@class='splitVw-footer-right']//div[@class='timing-option pull-left']//div[@class='pull-right marL5 text-right']//p[@class='actual-price']")
-	private WebElement returnFlightSelectedFare;
+	private WebElement returnFlightSelectedFareFooter;
 	
 	@FindBy(xpath="//div[@class='splitVw-footer-total make_relative make_flex alC']//span[@class='splitVw-total-fare']")
 	private WebElement totalFlightFare;
+	
+	@FindBy(xpath="//div[@class='splitVw-sctn pull-left']//div[@class='fli-list splitVw-listing active']//span[@class='actual-price']")
+	private WebElement departureFlightSelectedFare;
+	
+	@FindBy(xpath="//div[@class='splitVw-sctn pull-right']//div[@class='fli-list splitVw-listing active']//span[@class='actual-price']")
+	private WebElement returnFlightSelectedFare;
+	
+	@FindBy(xpath="//span[@class='splitVw-total-fare']")
+	private WebElement grandTotalFare;
 	
 	//create a constructor to initialize the current class members
 	public FlightDetailsListPage(){
@@ -85,7 +94,7 @@ public class FlightDetailsListPage extends BaseTest {
 		}
 	}
 	
-	public void selectDepartureAndReturnFlight(int departFlight, int returnFlight) throws InterruptedException{
+	/*public void selectDepartureAndReturnFlight(int departFlight, int returnFlight) throws InterruptedException{
 		WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
 		String departureFlightXpath = "(//div[@class='splitVw-sctn pull-left']//div[contains(@class,'fli-list splitVw-listing')]//span[@class='splitVw-outer append_right9'])"+"["+departFlight+"]";
 		String returnFlightXpath= "(//div[@class='splitVw-sctn pull-right']//div[contains(@class,'fli-list splitVw-listing')]//span[@class='splitVw-outer append_right9'])"+"["+returnFlight+"]";
@@ -94,7 +103,57 @@ public class FlightDetailsListPage extends BaseTest {
 		WebElement returnFlightWebElement= driver.findElement(By.xpath(returnFlightXpath));
 		wait.until(ExpectedConditions.visibilityOf(departFlightWebElement)).click();
 		wait.until(ExpectedConditions.visibilityOf(returnFlightWebElement)).click();
+		//₹
+		String deptFlightSelFare= departureFlightSelectedFare.getText();
+		String deptFl= deptFlightSelFare.replace(",", "");
+		System.out.println("The departure flight selected fare is: "+deptFl.replace("₹", ""));
+		
+		String returnFlightSelFare= returnFlightSelectedFare.getText();
+		String returnFl= returnFlightSelFare.replaceAll(",", "");
+		System.out.println("The return flight selected fare is: "+returnFl.replace("₹", ""));
+		
+	}*/
+	
+	public String selectAndGetDepartureFlightSelectedFare(int departFlight) throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
+		String departureFlightXpath = "(//div[@class='splitVw-sctn pull-left']//div[contains(@class,'fli-list splitVw-listing')]//span[@class='splitVw-outer append_right9'])"+"["+departFlight+"]";
+		WebElement departFlightWebElement= driver.findElement(By.xpath(departureFlightXpath));
+		wait.until(ExpectedConditions.visibilityOf(departFlightWebElement)).click();
+		String deptFlightSelFare= departureFlightSelectedFare.getText();
+		String deptFl= deptFlightSelFare.replace(",", "");
+		System.out.println("The departure flight selected fare is: "+deptFl.replace("₹", ""));
+		return deptFl;
 	}
 	
+	public String selectAndGetReturnFlightSelectedFare(int returnFlight)throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
+		String returnFlightXpath= "(//div[@class='splitVw-sctn pull-right']//div[contains(@class,'fli-list splitVw-listing')]//span[@class='splitVw-outer append_right9'])"+"["+returnFlight+"]";
+		WebElement returnFlightWebElement= driver.findElement(By.xpath(returnFlightXpath));
+		wait.until(ExpectedConditions.visibilityOf(returnFlightWebElement)).click();
+		String returnFlightSelFare= returnFlightSelectedFare.getText();
+		String returnFl= returnFlightSelFare.replaceAll(",", "");
+		System.out.println("The return flight selected fare is: "+returnFl.replace("₹", ""));
+		return returnFl;
+	}
 	
+	public String getDepartureFlightSelectedFareInFooter(){
+		String deptFlightSelFareInFooter= departureFlightSelectedFareFooter.getText();
+		String deptFl= deptFlightSelFareInFooter.replaceFirst(",", "");
+		System.out.println("The departure flight selected fare in footer is: "+deptFl.replace("₹", ""));
+		return deptFl;
+	}
+	
+	public String getReturnFlightSelectedFareInFooter(){
+		String returnFlightSelFareInFooter= returnFlightSelectedFareFooter.getText();
+		String returnFl= returnFlightSelFareInFooter.replaceFirst(",", "");
+		System.out.println("The departure flight selected fare in footer is: "+returnFl.replace("₹", ""));
+		return returnFl;
+	}
+	
+	public String getGrandTotalFlightFare(){
+		String totalFare= grandTotalFare.getText();
+		String totalFlightFare= totalFare.replaceFirst(",", "");
+		//System.out.println("The grand total flight fare is: "+totalFlightFare.replace("₹", ""));
+		return totalFlightFare;
+	}
 }

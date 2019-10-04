@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <parameter name="departFlight" value="param-val-not-found"/>
-  <parameter name="returnFlight" value="param-val-not-found"/>
-  <test name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [MakeMyTrip Test Automation Suite]">
+  <parameter name="departFlight" value="1"/>
+  <parameter name="returnFlight" value="2"/>
+  <test name="MakeMyTrip TestCases(failed)">
     <classes>
       <class name="com.mmt.qa.testcases.FlightDetailsListPageTest">
         <methods>
-          <include name="validateToSelectDepartureAndReturnFlightTest"/>
+          <include name="validateTheDepartureAndReturnFlightCountBySelectingOneStopChkBoxTest"/>
           <include name="tearDown"/>
+          <include name="validateTheDepartureAndReturnFlightCountWithoutSelectingStopsTest"/>
+          <include name="validateToSelectDepartureAndReturnFlightAlongWithPriceAndGrandTotalTest"/>
           <include name="preCondition"/>
         </methods>
       </class> <!-- com.mmt.qa.testcases.FlightDetailsListPageTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- MakeMyTrip TestCases(failed) -->
+</suite> <!-- Failed suite [MakeMyTrip Test Automation Suite] -->

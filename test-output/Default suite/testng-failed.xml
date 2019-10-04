@@ -7,8 +7,8 @@
     <classes>
       <class name="com.mmt.qa.testcases.FlightDetailsListPageTest">
         <methods>
-          <include name="validateToSelectDepartureAndReturnFlightTest"/>
           <include name="tearDown"/>
+          <include name="validateToSelectDepartureAndReturnFlightAlongWithPriceAndGrandTotalTest" invocation-numbers="0"/>
           <include name="preCondition"/>
         </methods>
       </class> <!-- com.mmt.qa.testcases.FlightDetailsListPageTest -->

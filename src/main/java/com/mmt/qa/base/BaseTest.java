@@ -47,9 +47,11 @@ public abstract class BaseTest implements AutoConstants{
 			log.info("The browser name is incorrect or not initialized in the config file");
 		}
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.get(prop.getProperty("url"));
+		
 	}
 	
 }
